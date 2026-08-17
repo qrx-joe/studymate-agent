@@ -47,6 +47,7 @@ function defaultLLM(): LLMClient {
   if (process.env.OPENAI_API_KEY) {
     return createLLMClient();
   }
+  console.warn('Warning: OPENAI_API_KEY not set, server is using mock LLM (fixed template replies)');
   return createMockLLMClient();
 }
 

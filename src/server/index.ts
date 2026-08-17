@@ -1,7 +1,14 @@
 import { createApp } from './app.js';
+import { config } from 'dotenv';
 import path from 'path';
 import fs from 'fs';
 import express from 'express';
+
+// Load environment variables from .env.local if it exists（与 cli.ts 保持一致）
+const envLocalPath = path.join(process.cwd(), '.env.local');
+if (fs.existsSync(envLocalPath)) {
+  config({ path: envLocalPath });
+}
 
 const PORT = parseInt(process.env.PORT ?? '3456', 10);
 // 默认只绑定本机回环地址：个人学习数据不经配置不暴露到局域网/公网。
